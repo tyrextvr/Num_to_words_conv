@@ -1,0 +1,95 @@
+#:kivy 2.1.0
+#:import Clipboard kivy.core.clipboard.Clipboard
+
+<MainWidget>:
+    rubles_input: rubles_input
+    kopeeks_input: kopeeks_input
+    output: output
+    run_conv: run_conv
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text: ''
+        Label:
+            text: 'Number in words'
+            font_size: (root.width + root.height) / 50
+
+            size_hint_x: None
+            size: self.texture_size
+            pos_hint: {'right': 1}
+        Label:
+            text: ''
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: ('100','100')
+        BoxLayout:
+        BoxLayout:
+            Label:
+                text: 'Input roubles:'
+                font_size: (root.width + root.height) / 80
+
+            MyTextInput:
+                id: rubles_input
+                font_size: (root.width + root.height) / 80
+                size_hint_y: 0.8
+                size_hint_x: 1.5
+                anchor_x: {'left':'10dp'}
+                on_text_validate: root.get_data()
+            Label:
+                size_hint_x:None
+                size: '100dp', (root.width + root.height) / 80
+            Label:
+                text: 'kopeeks:'
+
+                font_size: (root.width + root.height) / 80
+                size_hint_x: 0.5
+                pos_hint: {'left': 1}
+            TextInput:
+                text: '0'
+                id: kopeeks_input
+                font_size: (root.width + root.height) / 80
+                size_hint_x: 0.3
+                size_hint_y: 0.87
+                on_text_validate: root.get_data()
+            Label:
+                size_hint_x: 0.5
+        BoxLayout:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+            Button:
+                id: run_conv
+                text: 'CONVERT'
+                color: (1,1,1,1)
+                font_size: (root.width + root.height) / 80
+                on_press: root.run_converter()
+            Label:
+        Label:
+
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+        TextInput:
+            id: output
+            text: ''
+            font_size: (root.width + root.height) / 80
+            size_hint_x: 2.0
+            size_hint_y: 0.5
+        Label:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+        BoxLayout:
+            Label:
+            Button:
+                id: copy_btn
+                text: "COPY"
+                color: (1,1,1,1)
+                font_size: (root.width + root.height) / 80
+                on_release: Clipboard.copy(output.text)
+            Label:
+        Label:
